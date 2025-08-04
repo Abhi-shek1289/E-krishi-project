@@ -66,8 +66,47 @@ const Weather = () => {
   const [searchLocation, setSearchLocation] = useState('');
   const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
 
+  // Generate forecast data for the next 5 days starting from today
+  const generateForecastData = () => {
+    const forecastData = [];
+    const today = new Date();
+
+    const weatherConditions = [
+      { condition: 'Sunny', icon: 'sunny', tempRange: [28, 35], humidity: [50, 70], rain: [0, 15] },
+      { condition: 'Partly Cloudy', icon: 'partly-cloudy', tempRange: [25, 32], humidity: [60, 80], rain: [10, 30] },
+      { condition: 'Cloudy', icon: 'cloudy', tempRange: [22, 28], humidity: [70, 85], rain: [20, 50] },
+      { condition: 'Light Rain', icon: 'rain', tempRange: [20, 26], humidity: [80, 95], rain: [60, 85] },
+      { condition: 'Thunderstorm', icon: 'storm', tempRange: [18, 24], humidity: [85, 95], rain: [80, 95] }
+    ];
+
+    for (let i = 0; i < 5; i++) {
+      const forecastDate = new Date(today);
+      forecastDate.setDate(today.getDate() + i);
+
+      const weatherIndex = Math.floor(Math.random() * weatherConditions.length);
+      const weather = weatherConditions[weatherIndex];
+
+      const maxTemp = weather.tempRange[0] + Math.random() * (weather.tempRange[1] - weather.tempRange[0]);
+      const minTemp = maxTemp - (5 + Math.random() * 8);
+      const humidity = weather.humidity[0] + Math.random() * (weather.humidity[1] - weather.humidity[0]);
+      const chanceOfRain = weather.rain[0] + Math.random() * (weather.rain[1] - weather.rain[0]);
+
+      forecastData.push({
+        date: forecastDate.toISOString().split('T')[0],
+        maxTemp: Math.round(maxTemp),
+        minTemp: Math.round(minTemp),
+        condition: weather.condition,
+        icon: weather.icon,
+        humidity: Math.round(humidity),
+        chanceOfRain: Math.round(chanceOfRain)
+      });
+    }
+
+    return forecastData;
+  };
+
   // Simulated weather data (in production, you'd use a real API like OpenWeatherMap)
-  const mockWeatherData: WeatherData = {
+  const getMockWeatherData = (): WeatherData => ({
     location: {
       name: 'Mumbai',
       country: 'India',
@@ -87,8 +126,8 @@ const Weather = () => {
       uvIndex: 6,
       feelsLike: 31
     },
-    forecast: []
-  };
+    forecast: generateForecastData()
+  });
 
   useEffect(() => {
     fetchWeatherData();
