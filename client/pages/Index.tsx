@@ -298,12 +298,14 @@ export default function Index() {
           <p className="text-xl md:text-2xl text-white/90 mb-8 font-medium">
             Smart Solutions for Smarter Farming
           </p>
-          <Button
-            size="lg"
-            className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg rounded-md shadow-lg transform hover:scale-105 transition-all duration-300"
-          >
-            Explore More <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+          <Link to="/weather">
+            <Button
+              size="lg"
+              className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg rounded-md shadow-lg transform hover:scale-105 transition-all duration-300"
+            >
+              Explore More <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
         </div>
       </section>
 
