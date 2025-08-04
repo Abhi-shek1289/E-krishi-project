@@ -30,18 +30,4 @@ const App = () => (
   </QueryClientProvider>
 );
 
-// Prevent multiple createRoot calls by storing root globally
-const container = document.getElementById("root")!;
-
-// Use a global property to persist the root across hot reloads
-declare global {
-  interface Window {
-    __react_root__?: ReturnType<typeof createRoot>;
-  }
-}
-
-if (!window.__react_root__) {
-  window.__react_root__ = createRoot(container);
-}
-
-window.__react_root__.render(<App />);
+createRoot(document.getElementById("root")!).render(<App />);
