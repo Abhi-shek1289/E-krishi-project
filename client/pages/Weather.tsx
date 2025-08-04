@@ -124,6 +124,33 @@ const Weather = () => {
     { city: 'Mysore', state: 'Karnataka', lat: 12.2958, lon: 76.6394 }
   ];
 
+  // Filter cities based on search
+  const handleLocationSearch = (searchTerm: string) => {
+    setSearchLocation(searchTerm);
+    if (searchTerm.trim() === '') {
+      setFilteredCities([]);
+      return;
+    }
+
+    const filtered = indianCities.filter(city =>
+      city.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      city.state.toLowerCase().includes(searchTerm.toLowerCase())
+    ).slice(0, 8); // Limit to 8 results
+
+    setFilteredCities(filtered);
+  };
+
+  const selectLocation = (city: any) => {
+    setSelectedLocation({ city: city.city, state: city.state });
+    setSearchLocation('');
+    setFilteredCities([]);
+    setLocationSearchOpen(false);
+    // Trigger weather data refresh for new location
+    setTimeout(() => {
+      fetchWeatherData();
+    }, 500);
+  };
+
   // Generate forecast data for the next 5 days starting from today
   const generateForecastData = () => {
     const forecastData = [];
