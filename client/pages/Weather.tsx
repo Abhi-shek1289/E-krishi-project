@@ -402,12 +402,59 @@ const Weather = () => {
             </div>
             
             <div className="flex items-center space-x-4">
+              {/* Location Search */}
+              <div className="relative">
+                <div className="flex items-center bg-gray-50 rounded-lg px-3 py-2 min-w-[200px]">
+                  <MapPin className="h-4 w-4 text-gray-400 mr-2" />
+                  <input
+                    type="text"
+                    placeholder="Search city or state..."
+                    value={searchLocation}
+                    onChange={(e) => handleLocationSearch(e.target.value)}
+                    onFocus={() => setLocationSearchOpen(true)}
+                    className="bg-transparent border-none outline-none text-sm flex-1"
+                  />
+                </div>
+
+                {/* Location Dropdown */}
+                {locationSearchOpen && (searchLocation || filteredCities.length > 0) && (
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-64 overflow-y-auto z-50">
+                    {filteredCities.length > 0 ? (
+                      filteredCities.map((city, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center px-4 py-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0"
+                          onClick={() => selectLocation(city)}
+                        >
+                          <MapPin className="h-4 w-4 text-green-600 mr-3" />
+                          <div>
+                            <div className="font-medium text-gray-900">{city.city}</div>
+                            <div className="text-sm text-gray-500">{city.state}</div>
+                          </div>
+                        </div>
+                      ))
+                    ) : searchLocation && (
+                      <div className="px-4 py-3 text-gray-500 text-sm">
+                        No cities found for "{searchLocation}"
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Current Location Display */}
+                {!locationSearchOpen && (
+                  <div className="absolute top-full left-0 mt-1 text-xs text-gray-500">
+                    Current: {selectedLocation.city}, {selectedLocation.state}
+                  </div>
+                )}
+              </div>
+
               <div className="text-sm text-gray-500">
                 Last updated: {lastUpdated.toLocaleTimeString()}
               </div>
-              <Button 
-                variant="outline" 
-                size="sm" 
+              <Button
+                variant="outline"
+                size="sm"
                 onClick={fetchWeatherData}
                 disabled={loading}
               >
@@ -439,7 +486,7 @@ const Weather = () => {
                       {getWeatherIcon(weatherData.current.condition)}
                       <div className="ml-4">
                         <div className="text-5xl font-bold">
-                          {Math.round(weatherData.current.temperature)}��C
+                          {Math.round(weatherData.current.temperature)}���C
                         </div>
                         <div className="text-xl opacity-90">
                           {weatherData.current.condition}
