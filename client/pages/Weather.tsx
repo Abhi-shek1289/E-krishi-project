@@ -226,6 +226,22 @@ const Weather = () => {
     return () => clearInterval(interval);
   }, [selectedLocation]); // Re-fetch when location changes
 
+  // Close location dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (locationSearchOpen) {
+        setLocationSearchOpen(false);
+        setFilteredCities([]);
+        setSearchLocation('');
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [locationSearchOpen]);
+
   const fetchWeatherData = async () => {
     setLoading(true);
     try {
