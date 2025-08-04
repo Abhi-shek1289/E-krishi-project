@@ -514,12 +514,14 @@ export default function Index() {
           </div>
 
           <div className="text-center mt-12">
-            <Button
-              size="lg"
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg"
-            >
-              Explore More <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <Link to="/crop-recommendation">
+              <Button
+                size="lg"
+                className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg"
+              >
+                Explore More <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
