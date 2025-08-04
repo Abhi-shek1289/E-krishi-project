@@ -64,7 +64,7 @@ const Shop = () => {
       price: 45,
       originalPrice: 55,
       unit: 'kg',
-      image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400',
+      image: 'https://cdn.builder.io/api/v1/assets/dfb5e725ea9b4054b96bcf132975dc54/soilimg-d84f73?format=webp&width=800',
       rating: 4.6,
       reviews: 256,
       discount: 18,
@@ -95,7 +95,7 @@ const Shop = () => {
       price: 25,
       originalPrice: 30,
       unit: 'kg',
-      image: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400',
+      image: 'https://cdn.builder.io/api/v1/assets/dfb5e725ea9b4054b96bcf132975dc54/g28-a2cec1?format=webp&width=800',
       rating: 4.3,
       reviews: 167,
       discount: 17,
@@ -134,38 +134,38 @@ const Shop = () => {
       description: 'Premium Kashmir apples, crispy and sweet. Rich in vitamins.',
       origin: 'Kashmir, India'
     },
-    // Dairy Products
     {
       id: 7,
-      name: 'Pure Cow Ghee',
-      category: 'DAIRY PRODUCTS',
-      price: 450,
-      originalPrice: 550,
-      unit: '500g',
-      image: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400',
-      rating: 4.7,
-      reviews: 312,
-      discount: 18,
+      name: 'Fresh Corn',
+      category: 'FRESH VEGETABLES',
+      price: 30,
+      originalPrice: 40,
+      unit: 'kg',
+      image: 'https://cdn.builder.io/api/v1/assets/dfb5e725ea9b4054b96bcf132975dc54/g21-8c6dc8?format=webp&width=800',
+      rating: 4.5,
+      reviews: 189,
+      discount: 25,
       inStock: true,
-      description: 'Pure cow ghee made from organic milk. Traditional Bilona method.',
-      origin: 'Rajasthan, India'
+      description: 'Sweet and tender corn kernels, perfect for cooking and snacking.',
+      origin: 'Karnataka, India'
     },
-    // Spices & Herbs
+    // Dairy Products
     {
       id: 8,
-      name: 'Organic Turmeric Powder',
-      category: 'SPICES & HERBS',
-      price: 95,
-      originalPrice: 120,
-      unit: '250g',
-      image: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=400',
-      rating: 4.8,
-      reviews: 278,
-      discount: 21,
+      name: 'Pure Cow Milk',
+      category: 'DAIRY PRODUCTS',
+      price: 60,
+      originalPrice: 70,
+      unit: 'litre',
+      image: 'https://cdn.builder.io/api/v1/assets/dfb5e725ea9b4054b96bcf132975dc54/g33-20c584?format=webp&width=800',
+      rating: 4.7,
+      reviews: 312,
+      discount: 14,
       inStock: true,
-      description: 'Pure organic turmeric powder with high curcumin content.',
-      origin: 'Tamil Nadu, India'
+      description: 'Fresh cow milk from local dairy farms. Rich in calcium and proteins.',
+      origin: 'Punjab, India'
     },
+    // Spices & Herbs
     {
       id: 9,
       name: 'Fresh Basil Leaves',
@@ -181,9 +181,24 @@ const Shop = () => {
       description: 'Fresh organic basil leaves, perfect for cooking and medicinal use.',
       origin: 'Kerala, India'
     },
-    // Organic Products
     {
       id: 10,
+      name: 'Organic Clover Seeds',
+      category: 'SEEDS & SAPLINGS',
+      price: 120,
+      originalPrice: 150,
+      unit: '500g',
+      image: 'https://cdn.builder.io/api/v1/assets/dfb5e725ea9b4054b96bcf132975dc54/clover-0e75ac?format=webp&width=800',
+      rating: 4.6,
+      reviews: 98,
+      discount: 20,
+      inStock: true,
+      description: 'High-quality clover seeds for nitrogen fixation and soil improvement.',
+      origin: 'Himachal Pradesh, India'
+    },
+    // Organic Products
+    {
+      id: 11,
       name: 'Organic Black Beans',
       category: 'ORGANIC PRODUCTS',
       price: 85,
@@ -197,37 +212,66 @@ const Shop = () => {
       description: 'Organic black beans rich in protein and fiber.',
       origin: 'Madhya Pradesh, India'
     },
-    // Seeds & Saplings
-    {
-      id: 11,
-      name: 'Vegetable Seeds Combo',
-      category: 'SEEDS & SAPLINGS',
-      price: 250,
-      originalPrice: 300,
-      unit: 'pack',
-      image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400',
-      rating: 4.4,
-      reviews: 134,
-      discount: 17,
-      inStock: true,
-      description: 'Complete vegetable seeds pack for home gardening.',
-      origin: 'Multiple States, India'
-    },
-    // Farm Tools
     {
       id: 12,
-      name: 'Traditional Farming Tools Set',
-      category: 'FARM TOOLS',
-      price: 1200,
-      originalPrice: 1500,
-      unit: 'set',
-      image: 'https://images.unsplash.com/photo-1574704681949-a8c18ad6c7e9?w=400',
-      rating: 4.3,
-      reviews: 89,
+      name: 'Cotton Seeds',
+      category: 'SEEDS & SAPLINGS',
+      price: 200,
+      originalPrice: 250,
+      unit: 'kg',
+      image: 'https://cdn.builder.io/api/v1/assets/dfb5e725ea9b4054b96bcf132975dc54/cotton-fea1aa?format=webp&width=800',
+      rating: 4.4,
+      reviews: 134,
       discount: 20,
       inStock: true,
-      description: 'Complete set of traditional farming tools for small-scale farming.',
+      description: 'High-quality cotton seeds for cotton cultivation.',
+      origin: 'Gujarat, India'
+    },
+    // Farm Tools & Soil
+    {
+      id: 13,
+      name: 'Organic Soil Mix',
+      category: 'FARM TOOLS',
+      price: 300,
+      originalPrice: 400,
+      unit: '50kg bag',
+      image: 'https://cdn.builder.io/api/v1/assets/dfb5e725ea9b4054b96bcf132975dc54/soil-fdd45e?format=webp&width=800',
+      rating: 4.3,
+      reviews: 89,
+      discount: 25,
+      inStock: true,
+      description: 'Premium organic soil mix perfect for all types of plants and vegetables.',
+      origin: 'Maharashtra, India'
+    },
+    {
+      id: 14,
+      name: 'Natural Pesticides',
+      category: 'FARM TOOLS',
+      price: 180,
+      originalPrice: 220,
+      unit: '500ml',
+      image: 'https://cdn.builder.io/api/v1/assets/dfb5e725ea9b4054b96bcf132975dc54/pesticides-c9e4e9?format=webp&width=800',
+      rating: 4.5,
+      reviews: 156,
+      discount: 18,
+      inStock: true,
+      description: 'Eco-friendly natural pesticides for organic farming.',
       origin: 'Tamil Nadu, India'
+    },
+    {
+      id: 15,
+      name: 'Sunflower Oil',
+      category: 'ORGANIC PRODUCTS',
+      price: 140,
+      originalPrice: 170,
+      unit: '1 litre',
+      image: 'https://cdn.builder.io/api/v1/assets/dfb5e725ea9b4054b96bcf132975dc54/oil-e0d16e?format=webp&width=800',
+      rating: 4.7,
+      reviews: 267,
+      discount: 18,
+      inStock: true,
+      description: 'Pure cold-pressed sunflower oil, rich in vitamin E.',
+      origin: 'Karnataka, India'
     }
   ];
 
