@@ -544,47 +544,7 @@ export default function Index() {
               />
             </div>
 
-            <div className="bg-white rounded-lg shadow-xl overflow-hidden">
-              <div className="bg-green-600 text-white p-4">
-                <div className="flex items-center">
-                  <MessageCircle className="h-6 w-6 mr-2" />
-                  <h3 className="text-lg font-semibold">Farm Assistant AI</h3>
-                  <div className="ml-auto w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                </div>
-              </div>
-              <div className="h-96 bg-gray-50 p-4 flex flex-col">
-                <div className="flex-1 space-y-4">
-                  <div className="bg-green-100 p-3 rounded-lg max-w-xs">
-                    <p className="text-sm">
-                      Hello! I'm your farming assistant. How can I help you
-                      today?
-                    </p>
-                  </div>
-                  <div className="bg-blue-100 p-3 rounded-lg max-w-xs ml-auto">
-                    <p className="text-sm">
-                      What's the best time to plant tomatoes?
-                    </p>
-                  </div>
-                  <div className="bg-green-100 p-3 rounded-lg max-w-xs">
-                    <p className="text-sm">
-                      For tomatoes, the best planting time depends on your
-                      location. Generally, plant after the last frost when soil
-                      temperature reaches 60°F...
-                    </p>
-                  </div>
-                </div>
-                <div className="mt-4 flex items-center bg-white border rounded-lg p-2">
-                  <input
-                    type="text"
-                    placeholder="Ask about farming..."
-                    className="flex-1 border-none outline-none text-sm"
-                  />
-                  <Button size="sm" className="bg-green-600 hover:bg-green-700">
-                    Send
-                  </Button>
-                </div>
-              </div>
-            </div>
+            <FarmChatbot />
           </div>
         </div>
       </section>
