@@ -20,6 +20,9 @@ import {
   ArrowRight,
   Heart,
   Award,
+  Send,
+  Bot,
+  User,
 } from "lucide-react";
 
 export default function Index() {
