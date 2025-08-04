@@ -65,6 +65,63 @@ const Weather = () => {
   const [error, setError] = useState<string | null>(null);
   const [searchLocation, setSearchLocation] = useState('');
   const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
+  const [selectedLocation, setSelectedLocation] = useState({ city: 'Mumbai', state: 'Maharashtra' });
+  const [locationSearchOpen, setLocationSearchOpen] = useState(false);
+
+  // Indian cities database
+  const indianCities = [
+    { city: 'Mumbai', state: 'Maharashtra', lat: 19.0760, lon: 72.8777 },
+    { city: 'Delhi', state: 'Delhi', lat: 28.7041, lon: 77.1025 },
+    { city: 'Bangalore', state: 'Karnataka', lat: 12.9716, lon: 77.5946 },
+    { city: 'Hyderabad', state: 'Telangana', lat: 17.3850, lon: 78.4867 },
+    { city: 'Ahmedabad', state: 'Gujarat', lat: 23.0225, lon: 72.5714 },
+    { city: 'Chennai', state: 'Tamil Nadu', lat: 13.0827, lon: 80.2707 },
+    { city: 'Kolkata', state: 'West Bengal', lat: 22.5726, lon: 88.3639 },
+    { city: 'Pune', state: 'Maharashtra', lat: 18.5204, lon: 73.8567 },
+    { city: 'Jaipur', state: 'Rajasthan', lat: 26.9124, lon: 75.7873 },
+    { city: 'Surat', state: 'Gujarat', lat: 21.1702, lon: 72.8311 },
+    { city: 'Lucknow', state: 'Uttar Pradesh', lat: 26.8467, lon: 80.9462 },
+    { city: 'Kanpur', state: 'Uttar Pradesh', lat: 26.4499, lon: 80.3319 },
+    { city: 'Nagpur', state: 'Maharashtra', lat: 21.1458, lon: 79.0882 },
+    { city: 'Indore', state: 'Madhya Pradesh', lat: 22.7196, lon: 75.8577 },
+    { city: 'Thane', state: 'Maharashtra', lat: 19.2183, lon: 72.9781 },
+    { city: 'Bhopal', state: 'Madhya Pradesh', lat: 23.2599, lon: 77.4126 },
+    { city: 'Visakhapatnam', state: 'Andhra Pradesh', lat: 17.6868, lon: 83.2185 },
+    { city: 'Pimpri-Chinchwad', state: 'Maharashtra', lat: 18.6298, lon: 73.7997 },
+    { city: 'Patna', state: 'Bihar', lat: 25.5941, lon: 85.1376 },
+    { city: 'Vadodara', state: 'Gujarat', lat: 22.3072, lon: 73.1812 },
+    { city: 'Ghaziabad', state: 'Uttar Pradesh', lat: 28.6692, lon: 77.4538 },
+    { city: 'Ludhiana', state: 'Punjab', lat: 30.9010, lon: 75.8573 },
+    { city: 'Agra', state: 'Uttar Pradesh', lat: 27.1767, lon: 78.0081 },
+    { city: 'Nashik', state: 'Maharashtra', lat: 19.9975, lon: 73.7898 },
+    { city: 'Faridabad', state: 'Haryana', lat: 28.4089, lon: 77.3178 },
+    { city: 'Meerut', state: 'Uttar Pradesh', lat: 28.9845, lon: 77.7064 },
+    { city: 'Rajkot', state: 'Gujarat', lat: 22.3039, lon: 70.8022 },
+    { city: 'Kalyan-Dombivli', state: 'Maharashtra', lat: 19.2351, lon: 73.1278 },
+    { city: 'Vasai-Virar', state: 'Maharashtra', lat: 19.4920, lon: 72.8000 },
+    { city: 'Varanasi', state: 'Uttar Pradesh', lat: 25.3176, lon: 82.9739 },
+    { city: 'Srinagar', state: 'Jammu and Kashmir', lat: 34.0837, lon: 74.7973 },
+    { city: 'Aurangabad', state: 'Maharashtra', lat: 19.8762, lon: 75.3433 },
+    { city: 'Dhanbad', state: 'Jharkhand', lat: 23.7957, lon: 86.4304 },
+    { city: 'Amritsar', state: 'Punjab', lat: 31.6340, lon: 74.8723 },
+    { city: 'Navi Mumbai', state: 'Maharashtra', lat: 19.0330, lon: 73.0297 },
+    { city: 'Allahabad', state: 'Uttar Pradesh', lat: 25.4358, lon: 81.8463 },
+    { city: 'Ranchi', state: 'Jharkhand', lat: 23.3441, lon: 85.3096 },
+    { city: 'Howrah', state: 'West Bengal', lat: 22.5958, lon: 88.2636 },
+    { city: 'Coimbatore', state: 'Tamil Nadu', lat: 11.0168, lon: 76.9558 },
+    { city: 'Jabalpur', state: 'Madhya Pradesh', lat: 23.1815, lon: 79.9864 },
+    { city: 'Gwalior', state: 'Madhya Pradesh', lat: 26.2183, lon: 78.1828 },
+    { city: 'Vijayawada', state: 'Andhra Pradesh', lat: 16.5062, lon: 80.6480 },
+    { city: 'Jodhpur', state: 'Rajasthan', lat: 26.2389, lon: 73.0243 },
+    { city: 'Madurai', state: 'Tamil Nadu', lat: 9.9252, lon: 78.1198 },
+    { city: 'Raipur', state: 'Chhattisgarh', lat: 21.2514, lon: 81.6296 },
+    { city: 'Kota', state: 'Rajasthan', lat: 25.2138, lon: 75.8648 },
+    { city: 'Chandigarh', state: 'Chandigarh', lat: 30.7333, lon: 76.7794 },
+    { city: 'Guwahati', state: 'Assam', lat: 26.1445, lon: 91.7362 },
+    { city: 'Solapur', state: 'Maharashtra', lat: 17.6599, lon: 75.9064 },
+    { city: 'Hubli-Dharwad', state: 'Karnataka', lat: 15.3647, lon: 75.1240 },
+    { city: 'Mysore', state: 'Karnataka', lat: 12.2958, lon: 76.6394 }
+  ];
 
   // Generate forecast data for the next 5 days starting from today
   const generateForecastData = () => {
