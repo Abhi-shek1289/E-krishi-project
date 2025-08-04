@@ -140,18 +140,21 @@ const Weather = () => {
     try {
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
+      // Get fresh weather data with current dates
+      const baseData = getMockWeatherData();
+
       // Add some randomization to simulate real-time updates
       const randomizedData = {
-        ...mockWeatherData,
+        ...baseData,
         current: {
-          ...mockWeatherData.current,
-          temperature: mockWeatherData.current.temperature + (Math.random() - 0.5) * 4,
-          humidity: Math.max(30, Math.min(95, mockWeatherData.current.humidity + (Math.random() - 0.5) * 10)),
-          windSpeed: Math.max(0, mockWeatherData.current.windSpeed + (Math.random() - 0.5) * 8)
+          ...baseData.current,
+          temperature: baseData.current.temperature + (Math.random() - 0.5) * 4,
+          humidity: Math.max(30, Math.min(95, baseData.current.humidity + (Math.random() - 0.5) * 10)),
+          windSpeed: Math.max(0, baseData.current.windSpeed + (Math.random() - 0.5) * 8)
         }
       };
-      
+
       setWeatherData(randomizedData);
       setLastUpdated(new Date());
       setError(null);
