@@ -796,8 +796,7 @@ export default function Index() {
 
           <div className="border-t border-green-800 pt-8 text-center">
             <p className="text-green-200">
-              Copyright © 2024 ABHISHEK MISHRA & ISHITA RATHI. All rights
-              reserved.
+              Copyright © 2025 ABHISHEK MISHRA. All rights reserved.
             </p>
           </div>
         </div>
