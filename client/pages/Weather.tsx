@@ -191,34 +191,40 @@ const Weather = () => {
   };
 
   // Simulated weather data (in production, you'd use a real API like OpenWeatherMap)
-  const getMockWeatherData = (): WeatherData => ({
-    location: {
-      name: 'Mumbai',
-      country: 'India',
-      region: 'Maharashtra',
-      lat: 19.0760,
-      lon: 72.8777
-    },
-    current: {
-      temperature: 28,
-      condition: 'Partly Cloudy',
-      icon: 'partly-cloudy',
-      humidity: 78,
-      windSpeed: 12,
-      windDirection: 'SW',
-      pressure: 1013,
-      visibility: 10,
-      uvIndex: 6,
-      feelsLike: 31
-    },
-    forecast: generateForecastData()
-  });
+  const getMockWeatherData = (): WeatherData => {
+    const currentLocation = indianCities.find(city =>
+      city.city === selectedLocation.city && city.state === selectedLocation.state
+    ) || indianCities[0];
+
+    return {
+      location: {
+        name: currentLocation.city,
+        country: 'India',
+        region: currentLocation.state,
+        lat: currentLocation.lat,
+        lon: currentLocation.lon
+      },
+      current: {
+        temperature: 28,
+        condition: 'Partly Cloudy',
+        icon: 'partly-cloudy',
+        humidity: 78,
+        windSpeed: 12,
+        windDirection: 'SW',
+        pressure: 1013,
+        visibility: 10,
+        uvIndex: 6,
+        feelsLike: 31
+      },
+      forecast: generateForecastData()
+    };
+  };
 
   useEffect(() => {
     fetchWeatherData();
     const interval = setInterval(fetchWeatherData, 300000); // Update every 5 minutes
     return () => clearInterval(interval);
-  }, []);
+  }, [selectedLocation]); // Re-fetch when location changes
 
   const fetchWeatherData = async () => {
     setLoading(true);
@@ -433,7 +439,7 @@ const Weather = () => {
                       {getWeatherIcon(weatherData.current.condition)}
                       <div className="ml-4">
                         <div className="text-5xl font-bold">
-                          {Math.round(weatherData.current.temperature)}°C
+                          {Math.round(weatherData.current.temperature)}��C
                         </div>
                         <div className="text-xl opacity-90">
                           {weatherData.current.condition}
