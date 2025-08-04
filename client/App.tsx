@@ -30,4 +30,16 @@ const App = () => (
   </QueryClientProvider>
 );
 
-createRoot(document.getElementById("root")!).render(<App />);
+// Prevent multiple createRoot calls on the same container
+const container = document.getElementById("root")!;
+
+// Check if the container already has a React root
+if (!container._reactRootContainer) {
+  const root = createRoot(container);
+  // Store reference to prevent multiple roots
+  (container as any)._reactRootContainer = root;
+  root.render(<App />);
+} else {
+  // If root already exists, just re-render
+  (container as any)._reactRootContainer.render(<App />);
+}
