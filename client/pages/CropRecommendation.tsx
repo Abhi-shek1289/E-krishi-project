@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { 
-  ArrowLeft, 
-  Leaf, 
-  Brain, 
-  Beaker, 
-  Sprout, 
-  ShoppingCart, 
-  TrendingUp, 
+import {
+  ArrowLeft,
+  Leaf,
+  Brain,
+  Beaker,
+  Sprout,
+  ShoppingCart,
+  TrendingUp,
   BarChart3,
   CheckCircle,
   AlertTriangle,
@@ -21,7 +21,6 @@ import {
   Thermometer,
   Sun,
   Gauge,
-  Seedling,
   Sparkles
 } from 'lucide-react';
 
