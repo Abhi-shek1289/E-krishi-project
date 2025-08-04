@@ -67,6 +67,7 @@ const Weather = () => {
   const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
   const [selectedLocation, setSelectedLocation] = useState({ city: 'Mumbai', state: 'Maharashtra' });
   const [locationSearchOpen, setLocationSearchOpen] = useState(false);
+  const [filteredCities, setFilteredCities] = useState([]);
 
   // Indian cities database
   const indianCities = [
