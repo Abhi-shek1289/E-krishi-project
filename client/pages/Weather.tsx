@@ -87,53 +87,7 @@ const Weather = () => {
       uvIndex: 6,
       feelsLike: 31
     },
-    forecast: [
-      {
-        date: '2024-01-15',
-        maxTemp: 30,
-        minTemp: 22,
-        condition: 'Sunny',
-        icon: 'sunny',
-        humidity: 65,
-        chanceOfRain: 10
-      },
-      {
-        date: '2024-01-16',
-        maxTemp: 32,
-        minTemp: 24,
-        condition: 'Partly Cloudy',
-        icon: 'partly-cloudy',
-        humidity: 70,
-        chanceOfRain: 20
-      },
-      {
-        date: '2024-01-17',
-        maxTemp: 29,
-        minTemp: 23,
-        condition: 'Light Rain',
-        icon: 'rain',
-        humidity: 85,
-        chanceOfRain: 80
-      },
-      {
-        date: '2024-01-18',
-        maxTemp: 27,
-        minTemp: 21,
-        condition: 'Thunderstorm',
-        icon: 'storm',
-        humidity: 90,
-        chanceOfRain: 95
-      },
-      {
-        date: '2024-01-19',
-        maxTemp: 31,
-        minTemp: 23,
-        condition: 'Sunny',
-        icon: 'sunny',
-        humidity: 60,
-        chanceOfRain: 5
-      }
-    ]
+    forecast: []
   };
 
   useEffect(() => {
