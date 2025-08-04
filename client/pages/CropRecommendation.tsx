@@ -631,7 +631,7 @@ const CropRecommendation = () => {
                         {/* Seeds */}
                         <div>
                           <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
-                            <Seedling className="h-4 w-4 mr-2" />
+                            <Sprout className="h-4 w-4 mr-2" />
                             Recommended Seeds
                           </h4>
                           <div className="space-y-3">
