@@ -3,31 +3,23 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import {
   Search,
   Leaf,
   Sprout,
-  Users,
-  TrendingUp,
-  ShoppingCart,
   MessageCircle,
   Phone,
   Mail,
-  MapPin,
   Facebook,
   Instagram,
   Twitter,
   Linkedin,
   ArrowRight,
-  Star,
   Heart,
   Award,
-  Target,
 } from "lucide-react";
 
 export default function Index() {
