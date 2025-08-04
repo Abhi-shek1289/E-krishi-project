@@ -25,6 +25,195 @@ import {
   User,
 } from "lucide-react";
 
+// Chatbot Component
+const FarmChatbot = () => {
+  const [messages, setMessages] = useState([
+    {
+      id: 1,
+      text: "Hello! I'm your farming assistant. How can I help you today?",
+      sender: 'bot',
+      timestamp: new Date()
+    }
+  ]);
+  const [inputMessage, setInputMessage] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  // Agricultural knowledge base for responses
+  const getAIResponse = (userMessage) => {
+    const lowerMessage = userMessage.toLowerCase();
+
+    if (lowerMessage.includes('tomato') || lowerMessage.includes('tomatoes')) {
+      return "🍅 For tomatoes, plant after the last frost when soil temperature reaches 60°F (15°C). Space plants 24-36 inches apart. They need full sun, well-drained soil, and regular watering. Support with stakes or cages.";
+    } else if (lowerMessage.includes('rice') || lowerMessage.includes('paddy')) {
+      return "🌾 Rice cultivation requires flooded fields. Plant during monsoon season. Maintain 2-5cm water depth. Transplant seedlings at 20-25 days old. Harvest when grains turn golden yellow (120-140 days).";
+    } else if (lowerMessage.includes('wheat')) {
+      return "🌾 Wheat is best sown in October-December in India. Requires well-drained loamy soil. Use certified seeds, apply fertilizers (NPK), and ensure proper irrigation. Harvest when grains are hard and golden.";
+    } else if (lowerMessage.includes('soil') || lowerMessage.includes('fertilizer')) {
+      return "🌱 Test your soil pH (6.0-7.0 ideal for most crops). Use organic compost and NPK fertilizers. Rotate crops to maintain soil health. Add organic matter like compost or manure annually.";
+    } else if (lowerMessage.includes('pest') || lowerMessage.includes('disease')) {
+      return "🐛 Use integrated pest management (IPM). Apply neem oil for organic control. Rotate crops, maintain field hygiene, and use beneficial insects. For severe cases, consult local agricultural extension officers.";
+    } else if (lowerMessage.includes('water') || lowerMessage.includes('irrigation')) {
+      return "💧 Use drip irrigation for water efficiency. Water early morning or evening. Mulch around plants to retain moisture. Monitor soil moisture - stick finger 2 inches deep to check.";
+    } else if (lowerMessage.includes('season') || lowerMessage.includes('when') || lowerMessage.includes('time')) {
+      return "📅 Crop timing depends on your region. Kharif (June-October): Rice, Cotton, Sugarcane. Rabi (November-April): Wheat, Mustard, Peas. Zaid (April-June): Watermelon, Fodder crops.";
+    } else if (lowerMessage.includes('price') || lowerMessage.includes('market') || lowerMessage.includes('sell')) {
+      return "💰 Check daily market rates on government portals like eNAM. Consider direct sales to consumers, farmer markets, or cooperatives. Store produce properly to get better prices during off-season.";
+    } else if (lowerMessage.includes('government') || lowerMessage.includes('scheme') || lowerMessage.includes('subsidy')) {
+      return "🏛️ Key schemes: PM-KISAN (₹6000/year), Crop Insurance (PMFBY), Soil Health Cards, KCC (Kisan Credit Card). Visit your nearest agricultural office or check pmkisan.gov.in for details.";
+    } else if (lowerMessage.includes('organic') || lowerMessage.includes('natural')) {
+      return "🌿 Organic farming uses no synthetic chemicals. Use compost, green manure, crop rotation, and biological pest control. Certification takes 3 years. Higher prices but sustainable for long-term soil health.";
+    } else if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('help')) {
+      return "👋 Hello! I'm here to help with all your farming questions. Ask me about crops, soil, irrigation, pests, government schemes, or market prices. What would you like to know?";
+    } else if (lowerMessage.includes('thank') || lowerMessage.includes('thanks')) {
+      return "🙏 You're welcome! Happy to help our farming community. Feel free to ask more questions anytime. Good luck with your farming! 🌱";
+    } else {
+      return "🤔 I understand you're asking about farming. Could you be more specific? I can help with crop cultivation, soil management, pest control, irrigation, government schemes, or market information. Try asking about a specific crop or farming practice!";
+    }
+  };
+
+  const sendMessage = async () => {
+    if (!inputMessage.trim()) return;
+
+    const userMessage = {
+      id: messages.length + 1,
+      text: inputMessage,
+      sender: 'user',
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    setInputMessage('');
+    setIsTyping(true);
+
+    // Simulate typing delay
+    setTimeout(() => {
+      const botResponse = {
+        id: messages.length + 2,
+        text: getAIResponse(inputMessage),
+        sender: 'bot',
+        timestamp: new Date()
+      };
+
+      setMessages(prev => [...prev, botResponse]);
+      setIsTyping(false);
+    }, 1000 + Math.random() * 1000); // Random delay between 1-2 seconds
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      sendMessage();
+    }
+  };
+
+  return (
+    <div className="bg-white rounded-lg shadow-xl overflow-hidden">
+      <div className="bg-green-600 text-white p-4">
+        <div className="flex items-center">
+          <Bot className="h-6 w-6 mr-2" />
+          <div>
+            <h3 className="text-lg font-semibold">Farm Assistant AI</h3>
+            <p className="text-xs text-green-100">Agricultural Expert • Always Online</p>
+          </div>
+          <div className="ml-auto w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+        </div>
+      </div>
+
+      <div className="h-96 bg-gray-50 p-4 flex flex-col">
+        <div className="flex-1 overflow-y-auto space-y-4 scrollbar-thin scrollbar-thumb-green-300">
+          {messages.map((message) => (
+            <div
+              key={message.id}
+              className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+            >
+              <div className={`flex items-start space-x-2 max-w-xs ${message.sender === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}>
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
+                  message.sender === 'user' ? 'bg-blue-500' : 'bg-green-500'
+                }`}>
+                  {message.sender === 'user' ? (
+                    <User className="h-4 w-4 text-white" />
+                  ) : (
+                    <Bot className="h-4 w-4 text-white" />
+                  )}
+                </div>
+                <div className={`p-3 rounded-lg ${
+                  message.sender === 'user'
+                    ? 'bg-blue-500 text-white rounded-br-none'
+                    : 'bg-white border border-green-200 text-gray-800 rounded-bl-none shadow-sm'
+                }`}>
+                  <p className="text-sm whitespace-pre-wrap">{message.text}</p>
+                  <p className={`text-xs mt-1 ${
+                    message.sender === 'user' ? 'text-blue-100' : 'text-gray-500'
+                  }`}>
+                    {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+
+          {isTyping && (
+            <div className="flex justify-start">
+              <div className="flex items-start space-x-2 max-w-xs">
+                <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
+                  <Bot className="h-4 w-4 text-white" />
+                </div>
+                <div className="bg-white border border-green-200 p-3 rounded-lg rounded-bl-none shadow-sm">
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce"></div>
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          <div ref={messagesEndRef} />
+        </div>
+
+        <div className="mt-4 flex items-center bg-white border-2 border-green-200 rounded-lg p-2 focus-within:border-green-400 transition-colors">
+          <input
+            type="text"
+            placeholder="Ask about crops, soil, pests, schemes..."
+            className="flex-1 border-none outline-none text-sm"
+            value={inputMessage}
+            onChange={(e) => setInputMessage(e.target.value)}
+            onKeyPress={handleKeyPress}
+          />
+          <Button
+            size="sm"
+            className="bg-green-600 hover:bg-green-700 ml-2 px-3"
+            onClick={sendMessage}
+            disabled={!inputMessage.trim()}
+          >
+            <Send className="h-4 w-4" />
+          </Button>
+        </div>
+
+        <div className="mt-2 flex flex-wrap gap-2">
+          {['Rice cultivation', 'Tomato diseases', 'Soil testing', 'Government schemes'].map((suggestion) => (
+            <button
+              key={suggestion}
+              onClick={() => setInputMessage(suggestion)}
+              className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full hover:bg-green-200 transition-colors"
+            >
+              {suggestion}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function Index() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
