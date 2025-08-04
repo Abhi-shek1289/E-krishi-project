@@ -30,4 +30,12 @@ const App = () => (
   </QueryClientProvider>
 );
 
-createRoot(document.getElementById("root")!).render(<App />);
+// Prevent multiple createRoot calls
+const container = document.getElementById("root")!;
+let root: ReturnType<typeof createRoot> | null = null;
+
+if (!root) {
+  root = createRoot(container);
+}
+
+root.render(<App />);
