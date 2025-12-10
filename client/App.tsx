@@ -15,8 +15,8 @@ const queryClient = new QueryClient();
 
 const App = () => {
   // Reset page on app initialization to always start from home
-  if (typeof window !== 'undefined' && window.location.pathname !== '/') {
-    window.history.replaceState(null, '', '/');
+  if (typeof window !== "undefined" && window.location.pathname !== "/") {
+    window.history.replaceState(null, "", "/");
   }
 
   return (
