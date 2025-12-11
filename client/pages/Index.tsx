@@ -843,6 +843,12 @@ export default function Index() {
               >
                 Advisor
               </a>
+              <Link
+                to="/policies"
+                className="text-green-100 hover:text-white transition-colors"
+              >
+                Policies
+              </Link>
               <a
                 href="#gallery"
                 className="text-green-100 hover:text-white transition-colors"
