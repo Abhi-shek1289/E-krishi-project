@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import Shop from "./pages/Shop";
 import Weather from "./pages/Weather";
 import CropRecommendation from "./pages/CropRecommendation";
+import Policies from "./pages/Policies";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
