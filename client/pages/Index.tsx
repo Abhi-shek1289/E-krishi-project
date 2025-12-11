@@ -319,6 +319,12 @@ export default function Index() {
                 >
                   Advisor
                 </a>
+                <Link
+                  to="/policies"
+                  className="text-white hover:text-green-300 px-3 py-2 text-sm font-medium transition-colors"
+                >
+                  Policies
+                </Link>
                 <a
                   href="#gallery"
                   className="text-white hover:text-green-300 px-3 py-2 text-sm font-medium transition-colors"
