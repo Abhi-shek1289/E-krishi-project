@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -407,13 +407,621 @@ const CropRecommendation = () => {
         },
       ],
     },
+    {
+      name: "Onion",
+      requirements: {
+        nitrogen: [80, 120],
+        phosphorus: [60, 100],
+        potassium: [150, 200],
+        ph: [6.0, 7.0],
+        moisture: [60, 75],
+        temperature: [15, 25],
+      },
+      image:
+        "https://cdn.builder.io/api/v1/assets/dfb5e725ea9b4054b96bcf132975dc54/g28-a2cec1?format=webp&width=800",
+      season: "Rabi",
+      expectedYield: "200-300 quintals/hectare",
+      seeds: [
+        {
+          variety: "Bhima Deep Red",
+          price: 200,
+          supplier: "NHRDF Nashik",
+          features: ["Storage quality", "High yield", "Disease tolerant"],
+        },
+        {
+          variety: "Puna Red",
+          price: 180,
+          supplier: "Local Supplier",
+          features: ["Good shelf life", "Strong pungency", "Medium maturity"],
+        },
+      ],
+      fertilizers: [
+        {
+          type: "Urea",
+          npk: "46:0:0",
+          application: "100 kg/hectare",
+          price: 266,
+          timing: "Split doses",
+        },
+        {
+          type: "Potassium Nitrate",
+          npk: "13:0:46",
+          application: "150 kg/hectare",
+          price: 1800,
+          timing: "Bulb formation stage",
+        },
+      ],
+      pesticides: [
+        {
+          name: "Azadirachtin",
+          type: "Bio-pesticide",
+          target: "Thrips and mites",
+          price: 250,
+          application: "5ml/liter water",
+        },
+        {
+          name: "Mancozeb",
+          type: "Fungicide",
+          target: "Purple blotch",
+          price: 280,
+          application: "2g/liter water",
+        },
+      ],
+    },
+    {
+      name: "Cucumber",
+      requirements: {
+        nitrogen: [50, 100],
+        phosphorus: [30, 60],
+        potassium: [60, 100],
+        ph: [6.5, 7.5],
+        moisture: [65, 80],
+        temperature: [25, 35],
+      },
+      image:
+        "https://cdn.builder.io/api/v1/assets/dfb5e725ea9b4054b96bcf132975dc54/cucumber-1a2c3d?format=webp&width=800",
+      season: "Kharif & Summer",
+      expectedYield: "400-500 quintals/hectare",
+      seeds: [
+        {
+          variety: "Poinsett",
+          price: 400,
+          supplier: "Syngenta",
+          features: ["High yield", "Green fruits", "Disease resistant"],
+        },
+        {
+          variety: "Suresh Hybrid",
+          price: 350,
+          supplier: "IIHR",
+          features: ["Early maturity", "Good quality", "Long fruiting period"],
+        },
+      ],
+      fertilizers: [
+        {
+          type: "NPK Complex",
+          npk: "19:19:19",
+          application: "150 kg/hectare",
+          price: 980,
+          timing: "Split application",
+        },
+        {
+          type: "Urea",
+          npk: "46:0:0",
+          application: "50 kg/hectare",
+          price: 266,
+          timing: "At flowering",
+        },
+      ],
+      pesticides: [
+        {
+          name: "Spinosad",
+          type: "Bio-pesticide",
+          target: "Leaf miners and thrips",
+          price: 320,
+          application: "1ml/liter water",
+        },
+        {
+          name: "Carbendazim",
+          type: "Fungicide",
+          target: "Powdery mildew",
+          price: 290,
+          application: "1g/liter water",
+        },
+      ],
+    },
+    {
+      name: "Sugarcane",
+      requirements: {
+        nitrogen: [100, 200],
+        phosphorus: [50, 100],
+        potassium: [50, 150],
+        ph: [6.0, 8.5],
+        moisture: [70, 90],
+        temperature: [20, 30],
+      },
+      image:
+        "https://cdn.builder.io/api/v1/assets/dfb5e725ea9b4054b96bcf132975dc54/sugarcane-2b3e4f?format=webp&width=800",
+      season: "Kharif",
+      expectedYield: "60-80 quintals/hectare",
+      seeds: [
+        {
+          variety: "Co 0238",
+          price: 80,
+          supplier: "ICAR",
+          features: ["High sugar content", "Good yield", "Disease resistant"],
+        },
+        {
+          variety: "CoS 96255",
+          price: 85,
+          supplier: "Local",
+          features: ["High sucrose", "Medium duration", "Lodging resistant"],
+        },
+      ],
+      fertilizers: [
+        {
+          type: "Urea",
+          npk: "46:0:0",
+          application: "200 kg/hectare",
+          price: 266,
+          timing: "3-4 split doses",
+        },
+        {
+          type: "SSP",
+          npk: "0:16:0",
+          application: "100 kg/hectare",
+          price: 450,
+          timing: "At planting",
+        },
+      ],
+      pesticides: [
+        {
+          name: "Fipronil",
+          type: "Insecticide",
+          target: "Early shoot borer",
+          price: 650,
+          application: "2ml/liter water",
+        },
+        {
+          name: "Hexaconazole",
+          type: "Fungicide",
+          target: "Red rot",
+          price: 480,
+          application: "1ml/liter water",
+        },
+      ],
+    },
+    {
+      name: "Mango",
+      requirements: {
+        nitrogen: [50, 100],
+        phosphorus: [30, 60],
+        potassium: [40, 80],
+        ph: [6.0, 7.5],
+        moisture: [50, 70],
+        temperature: [25, 35],
+      },
+      image:
+        "https://cdn.builder.io/api/v1/assets/dfb5e725ea9b4054b96bcf132975dc54/mango-3c4d5e?format=webp&width=800",
+      season: "Year-round",
+      expectedYield: "80-120 quintals/hectare",
+      seeds: [
+        {
+          variety: "Alphonso",
+          price: 150,
+          supplier: "Government Nursery",
+          features: ["Premium quality", "High price", "Excellent taste"],
+        },
+        {
+          variety: "Kesar",
+          price: 140,
+          supplier: "Farmers Nursery",
+          features: ["Golden color", "Sweet", "Good shelf life"],
+        },
+      ],
+      fertilizers: [
+        {
+          type: "NPK Complex",
+          npk: "8:8:16",
+          application: "200 kg/hectare/year",
+          price: 850,
+          timing: "Split doses",
+        },
+        {
+          type: "Zinc Sulfate",
+          npk: "0:0:0",
+          application: "5 kg/hectare",
+          price: 300,
+          timing: "At flowering",
+        },
+      ],
+      pesticides: [
+        {
+          name: "Triadimefon",
+          type: "Fungicide",
+          target: "Powdery mildew",
+          price: 350,
+          application: "2ml/liter water",
+        },
+        {
+          name: "Deltamethrin",
+          type: "Insecticide",
+          target: "Fruit flies",
+          price: 400,
+          application: "1ml/liter water",
+        },
+      ],
+    },
+    {
+      name: "Pulse (Lentil)",
+      requirements: {
+        nitrogen: [20, 40],
+        phosphorus: [40, 70],
+        potassium: [40, 80],
+        ph: [6.5, 8.0],
+        moisture: [50, 65],
+        temperature: [15, 25],
+      },
+      image:
+        "https://cdn.builder.io/api/v1/assets/dfb5e725ea9b4054b96bcf132975dc54/lentil-4d5e6f?format=webp&width=800",
+      season: "Rabi",
+      expectedYield: "15-20 quintals/hectare",
+      seeds: [
+        {
+          variety: "L 4727",
+          price: 35,
+          supplier: "IIPR",
+          features: ["High yield", "Powdery mildew tolerant", "Good protein"],
+        },
+        {
+          variety: "Pusa Arhar 16",
+          price: 40,
+          supplier: "IARI",
+          features: ["Early maturity", "Wilt resistant", "High quality"],
+        },
+      ],
+      fertilizers: [
+        {
+          type: "DAP",
+          npk: "18:46:0",
+          application: "100 kg/hectare",
+          price: 1350,
+          timing: "Basal application",
+        },
+        {
+          type: "Sulfur",
+          npk: "0:0:0",
+          application: "30 kg/hectare",
+          price: 200,
+          timing: "At sowing",
+        },
+      ],
+      pesticides: [
+        {
+          name: "Metacystox",
+          type: "Insecticide",
+          target: "Aphids",
+          price: 280,
+          application: "1ml/liter water",
+        },
+        {
+          name: "Thiram",
+          type: "Fungicide",
+          target: "Seed rot",
+          price: 250,
+          application: "2.5g/kg seed",
+        },
+      ],
+    },
+    {
+      name: "Mustard",
+      requirements: {
+        nitrogen: [30, 60],
+        phosphorus: [40, 80],
+        potassium: [30, 60],
+        ph: [6.0, 8.0],
+        moisture: [40, 60],
+        temperature: [10, 20],
+      },
+      image:
+        "https://cdn.builder.io/api/v1/assets/dfb5e725ea9b4054b96bcf132975dc54/mustard-5e6f7g?format=webp&width=800",
+      season: "Rabi",
+      expectedYield: "18-22 quintals/hectare",
+      seeds: [
+        {
+          variety: "Pusa Bold",
+          price: 50,
+          supplier: "IARI",
+          features: ["High oil content", "Disease resistant", "Good yield"],
+        },
+        {
+          variety: "RH 406",
+          price: 55,
+          supplier: "Regional",
+          features: ["Hybrid vigor", "Early maturity", "High potential"],
+        },
+      ],
+      fertilizers: [
+        {
+          type: "Urea",
+          npk: "46:0:0",
+          application: "100 kg/hectare",
+          price: 266,
+          timing: "Split application",
+        },
+        {
+          type: "DAP",
+          npk: "18:46:0",
+          application: "100 kg/hectare",
+          price: 1350,
+          timing: "At sowing",
+        },
+      ],
+      pesticides: [
+        {
+          name: "Pyrethrins",
+          type: "Bio-pesticide",
+          target: "Sawfly",
+          price: 320,
+          application: "1ml/liter water",
+        },
+        {
+          name: "Thiram",
+          type: "Fungicide",
+          target: "Alternaria blight",
+          price: 250,
+          application: "2.5g/kg seed",
+        },
+      ],
+    },
+    {
+      name: "Brinjal",
+      requirements: {
+        nitrogen: [70, 120],
+        phosphorus: [40, 70],
+        potassium: [80, 140],
+        ph: [6.0, 6.8],
+        moisture: [60, 80],
+        temperature: [25, 30],
+      },
+      image:
+        "https://cdn.builder.io/api/v1/assets/dfb5e725ea9b4054b96bcf132975dc54/brinjal-6f7g8h?format=webp&width=800",
+      season: "Year-round",
+      expectedYield: "300-400 quintals/hectare",
+      seeds: [
+        {
+          variety: "Pusa Black Long",
+          price: 2000,
+          supplier: "IARI Delhi",
+          features: ["Long fruits", "High yield", "Excellent quality"],
+        },
+        {
+          variety: "Kufri Heera",
+          price: 1800,
+          supplier: "CPRI",
+          features: ["Round shape", "Good color", "High potential"],
+        },
+      ],
+      fertilizers: [
+        {
+          type: "NPK Complex",
+          npk: "19:19:19",
+          application: "250 kg/hectare",
+          price: 980,
+          timing: "Split application",
+        },
+        {
+          type: "Calcium Nitrate",
+          npk: "15.5:0:0",
+          application: "50 kg/hectare",
+          price: 450,
+          timing: "Fruit development",
+        },
+      ],
+      pesticides: [
+        {
+          name: "Spinosad",
+          type: "Bio-pesticide",
+          target: "Fruit and shoot borer",
+          price: 320,
+          application: "1ml/liter water",
+        },
+        {
+          name: "Mancozeb",
+          type: "Fungicide",
+          target: "Leaf spot",
+          price: 280,
+          application: "2g/liter water",
+        },
+      ],
+    },
+    {
+      name: "Carrot",
+      requirements: {
+        nitrogen: [60, 100],
+        phosphorus: [40, 80],
+        potassium: [100, 150],
+        ph: [6.5, 7.5],
+        moisture: [60, 75],
+        temperature: [15, 25],
+      },
+      image:
+        "https://cdn.builder.io/api/v1/assets/dfb5e725ea9b4054b96bcf132975dc54/carrot-7g8h9i?format=webp&width=800",
+      season: "Rabi & Summer",
+      expectedYield: "300-400 quintals/hectare",
+      seeds: [
+        {
+          variety: "Pusa Varna",
+          price: 250,
+          supplier: "IARI",
+          features: ["High carotene", "Long roots", "Storage quality"],
+        },
+        {
+          variety: "Nantestype",
+          price: 220,
+          supplier: "Local",
+          features: ["Cylindrical shape", "Good color", "Sweet taste"],
+        },
+      ],
+      fertilizers: [
+        {
+          type: "NPK Complex",
+          npk: "12:32:16",
+          application: "200 kg/hectare",
+          price: 1200,
+          timing: "At sowing",
+        },
+        {
+          type: "Urea",
+          npk: "46:0:0",
+          application: "50 kg/hectare",
+          price: 266,
+          timing: "Top dressing",
+        },
+      ],
+      pesticides: [
+        {
+          name: "Carbofuran",
+          type: "Insecticide",
+          target: "Root knot nematode",
+          price: 400,
+          application: "20 kg/hectare",
+        },
+        {
+          name: "Captan",
+          type: "Fungicide",
+          target: "Leaf blight",
+          price: 280,
+          application: "2g/liter water",
+        },
+      ],
+    },
+    {
+      name: "Cabbage",
+      requirements: {
+        nitrogen: [80, 120],
+        phosphorus: [50, 90],
+        potassium: [120, 180],
+        ph: [6.0, 7.5],
+        moisture: [65, 80],
+        temperature: [15, 25],
+      },
+      image:
+        "https://cdn.builder.io/api/v1/assets/dfb5e725ea9b4054b96bcf132975dc54/cabbage-8h9i0j?format=webp&width=800",
+      season: "Rabi & Summer",
+      expectedYield: "400-500 quintals/hectare",
+      seeds: [
+        {
+          variety: "Golden Acre",
+          price: 500,
+          supplier: "Syngenta",
+          features: ["Compact head", "Storage quality", "Disease tolerant"],
+        },
+        {
+          variety: "Pusa Synthetic",
+          price: 400,
+          supplier: "IARI",
+          features: ["Large head", "Good keeping", "Uniform maturity"],
+        },
+      ],
+      fertilizers: [
+        {
+          type: "NPK Complex",
+          npk: "19:19:19",
+          application: "250 kg/hectare",
+          price: 980,
+          timing: "Split application",
+        },
+        {
+          type: "Potassium Chloride",
+          npk: "0:0:60",
+          application: "100 kg/hectare",
+          price: 850,
+          timing: "Head formation",
+        },
+      ],
+      pesticides: [
+        {
+          name: "Beauveria",
+          type: "Bio-pesticide",
+          target: "Diamondback moth",
+          price: 350,
+          application: "1ml/liter water",
+        },
+        {
+          name: "Hexaconazole",
+          type: "Fungicide",
+          target: "Powdery mildew",
+          price: 300,
+          application: "1ml/liter water",
+        },
+      ],
+    },
+    {
+      name: "Soybean",
+      requirements: {
+        nitrogen: [30, 70],
+        phosphorus: [40, 80],
+        potassium: [50, 100],
+        ph: [6.0, 7.5],
+        moisture: [60, 75],
+        temperature: [20, 30],
+      },
+      image:
+        "https://cdn.builder.io/api/v1/assets/dfb5e725ea9b4054b96bcf132975dc54/soybean-9i0j1k?format=webp&width=800",
+      season: "Kharif",
+      expectedYield: "15-20 quintals/hectare",
+      seeds: [
+        {
+          variety: "JS 335",
+          price: 45,
+          supplier: "JNKVV",
+          features: ["High yield", "Phytophthora tolerant", "Good protein"],
+        },
+        {
+          variety: "Indore 8",
+          price: 40,
+          supplier: "Regional",
+          features: ["Early maturity", "Disease resistant", "Good quality"],
+        },
+      ],
+      fertilizers: [
+        {
+          type: "DAP",
+          npk: "18:46:0",
+          application: "100 kg/hectare",
+          price: 1350,
+          timing: "At sowing",
+        },
+        {
+          type: "Zinc Sulfate",
+          npk: "0:0:0",
+          application: "10 kg/hectare",
+          price: 350,
+          timing: "At sowing",
+        },
+      ],
+      pesticides: [
+        {
+          name: "Chlorpyrifos",
+          type: "Insecticide",
+          target: "Stem fly",
+          price: 450,
+          application: "2ml/liter water",
+        },
+        {
+          name: "Thiophanate Methyl",
+          type: "Fungicide",
+          target: "Phytophthora rot",
+          price: 320,
+          application: "1g/liter water",
+        },
+      ],
+    },
   ];
 
   const calculateSuitability = (crop: any, soil: SoilData): number => {
     let score = 0;
-    let factors = 0;
 
-    // Nitrogen suitability
     if (
       soil.nitrogen >= crop.requirements.nitrogen[0] &&
       soil.nitrogen <= crop.requirements.nitrogen[1]
@@ -426,9 +1034,7 @@ const CropRecommendation = () => {
       );
       score += Math.max(0, 20 - distance * 0.5);
     }
-    factors++;
 
-    // Phosphorus suitability
     if (
       soil.phosphorus >= crop.requirements.phosphorus[0] &&
       soil.phosphorus <= crop.requirements.phosphorus[1]
@@ -441,9 +1047,7 @@ const CropRecommendation = () => {
       );
       score += Math.max(0, 15 - distance * 0.3);
     }
-    factors++;
 
-    // Potassium suitability
     if (
       soil.potassium >= crop.requirements.potassium[0] &&
       soil.potassium <= crop.requirements.potassium[1]
@@ -456,9 +1060,7 @@ const CropRecommendation = () => {
       );
       score += Math.max(0, 15 - distance * 0.3);
     }
-    factors++;
 
-    // pH suitability
     if (
       soil.ph >= crop.requirements.ph[0] &&
       soil.ph <= crop.requirements.ph[1]
@@ -471,9 +1073,7 @@ const CropRecommendation = () => {
       );
       score += Math.max(0, 20 - distance * 10);
     }
-    factors++;
 
-    // Moisture suitability
     if (
       soil.moisture >= crop.requirements.moisture[0] &&
       soil.moisture <= crop.requirements.moisture[1]
@@ -486,9 +1086,7 @@ const CropRecommendation = () => {
       );
       score += Math.max(0, 15 - distance * 0.2);
     }
-    factors++;
 
-    // Temperature suitability
     if (
       soil.temperature >= crop.requirements.temperature[0] &&
       soil.temperature <= crop.requirements.temperature[1]
@@ -501,7 +1099,6 @@ const CropRecommendation = () => {
       );
       score += Math.max(0, 15 - distance * 0.5);
     }
-    factors++;
 
     return Math.round(score);
   };
@@ -525,7 +1122,6 @@ const CropRecommendation = () => {
       );
     }
 
-    // Add specific reasons based on soil parameters
     if (soil.nitrogen < crop.requirements.nitrogen[0]) {
       reasons.push(
         "Nitrogen levels are below optimal - consider nitrogen-rich fertilizers.",
@@ -545,36 +1141,40 @@ const CropRecommendation = () => {
     return reasons.join(" ");
   };
 
-  const analyzeSoil = async () => {
+  const analyzeSoil = () => {
     setIsAnalyzing(true);
+    setTimeout(() => {
+      const cropRecommendations = cropDatabase
+        .map((crop) => {
+          const suitability = calculateSuitability(crop, soilData);
+          const confidence = Math.min(95, suitability + Math.random() * 10);
 
-    // Simulate ML analysis delay
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+          return {
+            name: crop.name,
+            suitability,
+            confidence: Math.round(confidence),
+            reason: generateReason(crop, soilData, suitability),
+            image: crop.image,
+            expectedYield: crop.expectedYield,
+            season: crop.season,
+            seeds: crop.seeds,
+            fertilizers: crop.fertilizers,
+            pesticides: crop.pesticides,
+          };
+        })
+        .sort((a, b) => b.suitability - a.suitability);
 
-    const cropRecommendations = cropDatabase
-      .map((crop) => {
-        const suitability = calculateSuitability(crop, soilData);
-        const confidence = Math.min(95, suitability + Math.random() * 10);
-
-        return {
-          name: crop.name,
-          suitability,
-          confidence: Math.round(confidence),
-          reason: generateReason(crop, soilData, suitability),
-          image: crop.image,
-          expectedYield: crop.expectedYield,
-          season: crop.season,
-          seeds: crop.seeds,
-          fertilizers: crop.fertilizers,
-          pesticides: crop.pesticides,
-        };
-      })
-      .sort((a, b) => b.suitability - a.suitability);
-
-    setRecommendations(cropRecommendations);
-    setIsAnalyzing(false);
-    setHasAnalyzed(true);
+      setRecommendations(cropRecommendations);
+      setIsAnalyzing(false);
+      setHasAnalyzed(true);
+    }, 1500);
   };
+
+  useEffect(() => {
+    if (hasAnalyzed) {
+      analyzeSoil();
+    }
+  }, [soilData]);
 
   const handleInputChange = (field: keyof SoilData, value: number) => {
     setSoilData((prev) => ({ ...prev, [field]: value }));
@@ -595,7 +1195,6 @@ const CropRecommendation = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 via-blue-50 to-green-50">
-      {/* Header */}
       <header className="bg-white shadow-sm border-b sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -616,27 +1215,23 @@ const CropRecommendation = () => {
             </div>
             <Badge className="bg-gradient-to-r from-green-600 to-blue-600 text-white">
               <Sparkles className="h-4 w-4 mr-1" />
-              ML Powered
+              ML Powered ({cropDatabase.length} crops)
             </Badge>
           </div>
         </div>
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Hero Section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Smart Crop Recommendation System
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Enter your soil parameters and get AI-powered recommendations for
-            the best crops, seeds, fertilizers, and pesticides tailored to your
-            specific conditions.
+            Adjust soil parameters and get instant AI-powered recommendations for the best crops, seeds, fertilizers, and pesticides. Updates automatically as you change parameters!
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Soil Analysis Input */}
           <div className="lg:col-span-1">
             <Card className="sticky top-24">
               <CardHeader>
@@ -646,7 +1241,6 @@ const CropRecommendation = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
-                {/* Macronutrients */}
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-3">
                     Macronutrients (mg/kg)
@@ -720,7 +1314,6 @@ const CropRecommendation = () => {
                   </div>
                 </div>
 
-                {/* Environmental Factors */}
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-3">
                     Environmental Factors
@@ -728,7 +1321,7 @@ const CropRecommendation = () => {
                   <div className="space-y-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        pH Level: {soilData.ph}
+                        pH Level: {soilData.ph.toFixed(1)}
                       </label>
                       <input
                         type="range"
@@ -826,7 +1419,7 @@ const CropRecommendation = () => {
                   {isAnalyzing ? (
                     <>
                       <Zap className="h-5 w-5 mr-2 animate-pulse" />
-                      Analyzing Soil...
+                      Analyzing...
                     </>
                   ) : (
                     <>
@@ -839,7 +1432,6 @@ const CropRecommendation = () => {
             </Card>
           </div>
 
-          {/* Results Section */}
           <div className="lg:col-span-2">
             {isAnalyzing && (
               <Card className="mb-8">
@@ -876,7 +1468,7 @@ const CropRecommendation = () => {
                   </h2>
                   <p className="text-gray-600">
                     Based on your soil analysis, here are the best crops for
-                    your field
+                    your field (auto-updates as you adjust parameters)
                   </p>
                 </div>
 
@@ -923,7 +1515,6 @@ const CropRecommendation = () => {
 
                     <CardContent className="p-6">
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {/* Analysis & Yield */}
                         <div>
                           <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
                             <TrendingUp className="h-4 w-4 mr-2" />
@@ -944,7 +1535,6 @@ const CropRecommendation = () => {
                           </div>
                         </div>
 
-                        {/* Seeds */}
                         <div>
                           <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
                             <Sprout className="h-4 w-4 mr-2" />
@@ -983,14 +1573,12 @@ const CropRecommendation = () => {
                           </div>
                         </div>
 
-                        {/* Fertilizers & Pesticides */}
                         <div>
                           <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
                             <Droplets className="h-4 w-4 mr-2" />
                             Fertilizers & Pesticides
                           </h4>
                           <div className="space-y-3">
-                            {/* Fertilizers */}
                             <div>
                               <div className="text-sm font-medium text-gray-700 mb-2">
                                 Fertilizers
@@ -1018,7 +1606,6 @@ const CropRecommendation = () => {
                                 ))}
                             </div>
 
-                            {/* Pesticides */}
                             <div>
                               <div className="text-sm font-medium text-gray-700 mb-2">
                                 Pesticides
@@ -1071,7 +1658,7 @@ const CropRecommendation = () => {
                 <p className="text-gray-600">
                   Adjust your soil parameters on the left and click "Get AI
                   Recommendations" to receive personalized crop, seed,
-                  fertilizer, and pesticide suggestions.
+                  fertilizer, and pesticide suggestions. Once started, recommendations will update automatically as you adjust the parameters!
                 </p>
               </Card>
             )}
