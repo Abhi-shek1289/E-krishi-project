@@ -26,13 +26,14 @@ const App = () => {
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/weather" element={<Weather />} />
-          <Route path="/crop-recommendation" element={<CropRecommendation />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/weather" element={<Weather />} />
+        <Route path="/crop-recommendation" element={<CropRecommendation />} />
+        <Route path="/policies" element={<Policies />} />
+        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
       </BrowserRouter>
     </QueryClientProvider>
   );
